@@ -1,17 +1,44 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-// Add services to the container.
+namespace RestWithASPNET // Adicione esse namespace
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+            // Add services to the container.
+            builder.Services.AddControllers();
 
-var app = builder.Build();
+            var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+            // Configure the HTTP request pipeline.
+            app.UseHttpsRedirection();
+            app.UseAuthorization();
+            app.MapControllers();
 
-app.UseHttpsRedirection();
+            app.Run();
+        }
+    }
+}
 
-app.UseAuthorization();
 
-app.MapControllers();
+//var builder = WebApplication.CreateBuilder(args);
 
-app.Run();
+//// Add services to the container.
+
+//builder.Services.AddControllers();
+
+//var app = builder.Build();
+
+//// Configure the HTTP request pipeline.
+
+//app.UseHttpsRedirection();
+
+//app.UseAuthorization();
+
+//app.MapControllers();
+
+//app.Run();
